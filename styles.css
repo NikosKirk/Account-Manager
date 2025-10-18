@@ -1,0 +1,30 @@
+body{
+      user-select: none; 
+}
+#errorMessage, .error {
+    color: red;
+}
+
+#accountsContainer div {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteBtn {
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    font-weight: bold;
+
+}
+
+button, #saveAccountsBtn {
+    user-select: none; 
+    cursor: pointer;
+}
