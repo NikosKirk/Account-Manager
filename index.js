@@ -11,10 +11,10 @@ class Account {
 
     displayAccounts() {
         return `--- Account: ${this.id + 1} ---
-ID: ${this.id}
-Name: ${this.name}
-Password: ${this.password}
-Email: ${this.email}`;
+            ID: ${this.id}
+            Name: ${this.name}
+            Password: ${this.password}
+            Email: ${this.email}`;
     }
 }
 
