@@ -91,13 +91,17 @@ function Submit() {
         return;
     }
 
-    const parts = email.split("@");
+    // ✅ Improved email validation
+    const atIndex = email.indexOf("@");
     if (
-        parts.length !== 2 ||
-        parts[0].length === 0 ||
-        parts[1].length <= 3 ||
-        parts[1].startsWith(".") ||
-        !parts[1].includes(".")
+        atIndex === -1 ||                    // no @
+        email.startsWith(".") ||             // starts with dot
+        email[atIndex - 1] === "." ||        // dot before @
+        email.includes("..") ||              // double dots
+        !email.includes(".", atIndex) ||     // no dot after @
+        email.endsWith(".") ||               // ends with dot
+        atIndex === 0 ||                     // nothing before @
+        atIndex === email.length - 1         // nothing after @
     ) {
         emailError.textContent = "Please enter a valid email (like name@domain.asdn)";
         return;
@@ -121,6 +125,7 @@ function Submit() {
 
     refreshAccountsDisplay();
 }
+
 
 // Checkbox listener
 document.getElementById("showAccountsCheckbox").addEventListener("change", refreshAccountsDisplay);
