@@ -1,5 +1,6 @@
 const accounts = [];
 const emails = [];
+let nextId = 0; // Global counter for unique IDs
 
 class Account {
     constructor(id, name, password, email) {
@@ -11,10 +12,10 @@ class Account {
 
     displayAccounts() {
         return `--- Account: ${this.id + 1} ---
-            ID: ${this.id}
-            Name: ${this.name}
-            Password: ${this.password}
-            Email: ${this.email}`;
+ID: ${this.id}
+Name: ${this.name}
+Password: ${this.password}
+Email: ${this.email}`;
     }
 }
 
@@ -25,6 +26,9 @@ function loadAccounts() {
         const acc = new Account(accData.id, accData.name, accData.password, accData.email);
         accounts.push(acc);
         emails.push(acc.email);
+
+        // Ensure nextId is always greater than any existing ID
+        if (acc.id >= nextId) nextId = acc.id + 1;
     });
 }
 
@@ -91,7 +95,7 @@ function Submit() {
         return;
     }
 
-    // ✅ Improved email validation
+    // Improved email validation
     const atIndex = email.indexOf("@");
     if (
         atIndex === -1 ||                    // no @
@@ -112,11 +116,14 @@ function Submit() {
         return;
     }
 
-    emails.push(email);
-    const id = accounts.length;
-    const newAccount = new Account(id, name, password, email);
-    accounts.push(newAccount);
+    // Create account with unique ID
+    const newAccount = new Account(nextId, name, password, email);
+    nextId++; // increment for next account
 
+    accounts.push(newAccount);
+    emails.push(email);
+
+    // Clear form
     document.getElementById("accountName").value = "";
     document.getElementById("accountPassword").value = "";
     document.getElementById("accountConfirmPassword").value = "";
@@ -125,7 +132,6 @@ function Submit() {
 
     refreshAccountsDisplay();
 }
-
 
 // Checkbox listener
 document.getElementById("showAccountsCheckbox").addEventListener("change", refreshAccountsDisplay);
