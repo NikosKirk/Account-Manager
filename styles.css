@@ -1,30 +1,158 @@
-body{
-      user-select: none; 
-}
-#errorMessage, .error {
-    color: red;
+/* Reset + Modern Base Style */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", "Segoe UI", Roboto, sans-serif;
 }
 
-#accountsContainer div {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
+body {
+    background: linear-gradient(135deg, #f3f4f7, #e0e4eb);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    padding: 40px;
+    color: #222;
 }
 
-.deleteBtn {
-    background: red;
+/* Title */
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+    width: 250px;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: 0.3s;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+}
+
+/* Buttons */
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 2px 6px;
-    font-weight: bold;
-
+    font-weight: 600;
+    transition: background 0.3s, transform 0.1s;
 }
 
-button, #saveAccountsBtn {
-    user-select: none; 
+button:hover {
+    background: linear-gradient(135deg, #5aa0f2, #4286d4);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+#saveAccountsBtn {
+    display: none;
+}
+
+/* Error Text */
+.error {
+    color: #e74c3c;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Checkbox */
+label {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Account Container */
+#accountsContainer {
+    margin-top: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual Account Card */
+#accountsContainer div {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+#accountsContainer div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Account Info */
+#accountsContainer span {
+    white-space: pre-line;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Delete Button */
+.deleteBtn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.deleteBtn:hover {
+    background: #ff6b5a;
+}
+
+.deleteBtn:active {
+    transform: scale(0.9);
+}
+
+.deleteBtn:hover {
+    background: #ff6b5a;
+}
+
+.deleteBtn:active {
+    transform: scale(0.9);
+}
+
+/* Make Text Unselectable */
+body, button, input {
+    user-select: none;
+}
+
+/* Smooth Transitions */
+#accountsContainer, button, input {
+    transition: all 0.25s ease-in-out;
 }
